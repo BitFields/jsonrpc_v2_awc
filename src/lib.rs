@@ -1,4 +1,4 @@
-use awc::client::Client;
+use awc::Client;
 use serde::Serialize;
 
 pub const JSONRPC_VERSION: &str = "2.0";
@@ -23,17 +23,17 @@ impl<T: Serialize> Request<T> {
             id: id,
         }
     }
-    pub fn send(self) -> awc::SendClientRequest {
+    pub fn send(self, url: String) -> awc::SendClientRequest {
         return Client::new()
-            .post("http://localhost:8082/api")
+            .post(url)
             .header("User-Agent", "actix-web/3.0")
             .header("Content-Type", "application/json")
             .send_json(&self);
     }
 
-    pub fn send_with_api_key(self, key: String, value: String) -> awc::SendClientRequest {
+    pub fn send_with_api_key(self, url: String, key: String, value: String) -> awc::SendClientRequest {
         return Client::new()
-            .post("http://localhost:8082/api")
+            .post(url)
             .header("User-Agent", "actix-web/3.0")
             .header("Content-Type", "application/json")
             .header(key, value)
