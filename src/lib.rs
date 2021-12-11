@@ -8,7 +8,7 @@ pub struct Params<T: Serialize>(pub T);
 
 #[derive(Debug, Serialize)]
 pub struct Request<T: Serialize> {
-    pub jsonrpc: String,
+    jsonrpc: String,
     pub method: String,
     pub params: Params<T>,
     pub id: u64,
