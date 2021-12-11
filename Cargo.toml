@@ -3,7 +3,10 @@ name = "jsonrpc_v2_awc"
 version = "0.1.0"
 authors = ["jhaboic <josiphaboic@gmail.com>"]
 edition = "2018"
-
+description = "JSON RPC client based on awc (actix web client)"
+repository = "https://github.com/BitFields/jsonrpc_v2_awc.git"
+keywords = ["json", "rpc", "client", "jsonrpc"]
+license = "Apache-2.0"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
