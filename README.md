@@ -22,4 +22,15 @@ println!(
         .body()
         .await?
 );
+
+// call to remote function `timestamp` with no params, using api_key
+println!(
+    "2 + 3 = {:?}",
+    jsonrpc_v2_awc::Request::new("timestamp", jsonrpc_v2_awc::Params(()), 1)
+        .send_with_api_key("http://localhost:8082/api", "API_KEY", "ds09ds9d-0d9s0d.xxx.yyy")
+        .await?
+        .body()
+        .await?
+);
+
 ```
