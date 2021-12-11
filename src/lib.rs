@@ -18,7 +18,7 @@ impl<T: Serialize> Request<T> {
     pub fn new(method: &str, params: Params<T>, id: u64) -> Request<T> {
         Request {
             jsonrpc: JSONRPC_VERSION.to_string(),
-            method: method.to_owned(),
+            method: method.to_string(),
             params: params,
             id: id,
         }
