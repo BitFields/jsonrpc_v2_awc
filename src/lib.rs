@@ -15,15 +15,15 @@ pub struct Request<T: Serialize> {
 }
 
 impl<T: Serialize> Request<T> {
-    pub fn new(method: String, params: Params<T>, id: u64) -> Request<T> {
+    pub fn new(method: &str, params: Params<T>, id: u64) -> Request<T> {
         Request {
             jsonrpc: JSONRPC_VERSION.to_string(),
-            method: method,
+            method: method.to_owned(),
             params: params,
             id: id,
         }
     }
-    pub fn send(self, url: String) -> awc::SendClientRequest {
+    pub fn send(self, url: &str) -> awc::SendClientRequest {
         return Client::new()
             .post(url)
             .header("User-Agent", "actix-web/3.0")
@@ -31,7 +31,7 @@ impl<T: Serialize> Request<T> {
             .send_json(&self);
     }
 
-    pub fn send_with_api_key(self, url: String, key: String, value: String) -> awc::SendClientRequest {
+    pub fn send_with_api_key(self, url: &str, key: &str, value: &str) -> awc::SendClientRequest {
         return Client::new()
             .post(url)
             .header("User-Agent", "actix-web/3.0")
